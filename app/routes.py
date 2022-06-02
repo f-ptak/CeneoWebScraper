@@ -32,8 +32,8 @@ selectors = {
 def index():
     return render_template("index.html.jinja")
 
-@app.route('/extract')
-def extract():
+@app.route('/extract/<product_id>')
+def extract(product_id):
     """docstring here"""
     product_url = f"https://www.ceneo.pl/{product_id}#tab=reviews"
 
@@ -59,7 +59,7 @@ def extract():
 
     with open(f"app/opinions/{product_id}.json", "w", encoding="UTF-8") as jf:
         json.dump(all_opinions, jf, indent=4, ensure_ascii=False)
-    return redirect(url_for('product', product_id))
+    return redirect(url_for('product', product_id=product_id))
 
 @app.route('/products')
 def products():
@@ -70,5 +70,5 @@ def author():
     return render_template("author.html.jinja")
 
 @app.route('/product/<product_id>')
-def product_id():
+def product_id(product_id):
     return render_template("product.html.jinja", product_id=product_id)
