@@ -1,0 +1,12 @@
+{% extends "base.html.jinja" %}
+{% block content %}
+     <form action="{{url_for('extract')}}" method="POST">
+        <div class="mb-3">
+            <label for="product_id" class="form-label">ID produktu</label>
+            <input type="text" class="form-control-plaintext  bg-white" id="product_id" name="product_id" placeholder="Podaj ID produktu z Ceneo.pl">
+        </div>
+        <div class="mb-3">
+            <input type="submit" class="btn btn-warning mb-3" value="Wyekstraktuj">
+        </div>
+    </form>
+{% endblock content %}
