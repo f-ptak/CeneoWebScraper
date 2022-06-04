@@ -1,12 +1,17 @@
 {% extends "base.html.jinja" %}
 {% block content %}
+    <h2 class="fs-2 mb-4">Pobierz opinie o produkcie</h2>
      <form action="{{url_for('extract')}}" method="POST">
-        <div class="mb-3">
-            <label for="product_id" class="form-label">ID produktu</label>
-            <input type="text" class="form-control-plaintext  bg-white" id="product_id" name="product_id" placeholder="Podaj ID produktu z Ceneo.pl">
-        </div>
-        <div class="mb-3">
-            <input type="submit" class="btn btn-warning mb-3" value="Wyekstraktuj">
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label for="product_id" class="fs-5 col-form-label">ID produktu</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" class="fs-5 bg-white" id="product_id" name="product_id">
+            </div>
+            <div class="col-auto">
+                <input type="submit" class="btn rounded-0 btn-warning" value="Pobierz">
+            </div>
         </div>
     </form>
 {% endblock content %}

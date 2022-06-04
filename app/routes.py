@@ -84,8 +84,8 @@ def author():
     return render_template("author.html.jinja")
 
 @app.route('/product/<product_id>')
-def product_id(product_id):
-    """docstring here""""
+def product(product_id):
+    """docstring here"""
     opinions = pd.read_json(f"opinions/{product_id}.json")
     opinions["stars"] = opinions["stars"].map(lambda x: float(x.split("/")[0].replace(",",".")))
 

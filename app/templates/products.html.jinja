@@ -1,10 +1,11 @@
 {% extends "base.html.jinja" %}
 {% block content %}
+    <h2 class="fs-2 mb-4">Lista produktów</h2>
     <ul class="list-group">
         {% for product in products %}
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                <a class="nav-link" href="{{url_for('product', product_id=product)}}"><i class="mb-3"></i>{{product}}</a>
-                <span class="badge bg-white">{{loop.index}}</span>
+            <li class="list-group-item d-flex justify-content-between align-items-center rounded-0 mb-3">
+                <a class="nav-link fs-6" href="{{url_for('product', product_id=product)}}">{{product}}</a>
+                <span class="badge bg-secondary rounded-0 fs-6">{{loop.index}}</span>
             </li>
         {% endfor %}
     </ul>
