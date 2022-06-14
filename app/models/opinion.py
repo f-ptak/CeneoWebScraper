@@ -15,9 +15,17 @@ class Opinion():
         self.pros = pros
         self.cons = cons
         self.opinion_id = opinion_id
-        return self
     
-    def extract_opinion(self):
+    def __str__(self):
+        return f"opinion_id: {self.opinion_id}<br>" + "<br>".join(f"{key}: {str(getattr(self, key))}" for key in selectors.keys())
+
+    def __repr__(self):
+        return f"Opinion(opinion_id={self.opinion_id}, " + ", ".join(f"{key}={str(getattr(self, key))}" for key in selectors.keys()) + ")"
+
+    def to_dict(self):
+        return {"opinion_id": self.opinion_id} | {key: getattr(self, key) for key in selectors.keys()}
+
+    def extract_opinion(self, opinion):
         for key, value in selectors.items():
             setattr(self, key, get_item(opinion, *value))
         self.opinion_id = opinion=["data-entry-id"]
