@@ -28,5 +28,5 @@ class Opinion():
     def extract_opinion(self, opinion):
         for key, value in selectors.items():
             setattr(self, key, get_item(opinion, *value))
-        self.opinion_id = opinion=["data-entry-id"]
+        self.opinion_id = opinion["data-entry-id"]
         return self

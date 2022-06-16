@@ -19,9 +19,8 @@ def extract():
             product.export_opinions()
             product.export_product()
         else:
-            error = "Yee haaaw! Somethin' went wrong, bucko!"
+            error = "Darn it! Something's gone wrong, bucko!"
             return render_template("extract.html.jinja", error=error)
-
         return redirect(url_for('product', product_id=product_id))
 
     else:

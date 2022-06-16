@@ -1,23 +1,23 @@
 {% extends "base.html.jinja" %}
 {% block content %}
     <h2 class="fs-2 mb-4">Pobierz opinie o produkcie</h2>
-    {% if error %}
-    <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
-  <strong>{{error}}</strong> 
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-    {% endif %}
-     <form action="{{url_for('extract')}}" method="POST">
-        <div class="row g-3 align-items-center">
-            <div class="col-auto">
-                <label for="product_id" class="fs-5 col-form-label">ID produktu</label>
+        {% if error %}
+            <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
+            <strong>{{error}}</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-            <div class="col-auto">
-                <input type="text" class="fs-5 bg-white" id="product_id" name="product_id">
+        {% endif %}
+        <form action="{{url_for('extract')}}" method="POST">
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="product_id" class="fs-5 col-form-label">ID produktu</label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" class="fs-5 bg-white" id="product_id" name="product_id">
+                </div>
+                <div class="col-auto">
+                    <input type="submit" class="btn rounded-0 btn-warning" value="Pobierz">
+                </div>
             </div>
-            <div class="col-auto">
-                <input type="submit" class="btn rounded-0 btn-warning" value="Pobierz">
-            </div>
-        </div>
-    </form>
+        </form>
 {% endblock content %}

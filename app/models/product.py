@@ -1,7 +1,6 @@
 import requests
 import json
 import os
-from flask import redirect, url_for
 from bs4 import BeautifulSoup
 import pandas as pd
 import numpy as np
@@ -68,7 +67,7 @@ class Product():
         return self
 
     def opinions_to_df(self):
-        opinions = pd.read_json(json.dumps([opinion.to_dict() for opinion in self.opinions]))
+        opinions = pd.read_json(json.dumps(self.opinions_to_dict()))
         opinions["stars"] = opinions["stars"].map(lambda x: float(x.split("/")[0].replace(",",".")))
         return opinions
 
@@ -138,8 +137,8 @@ class Product():
             json.dump(self.opinions_to_dict(), jf, indent=4, ensure_ascii=False)
     
     def import_product(self):
-        if os.path.exists(f"app/products/{self.product_id.json}"):
-            with open("app/products/{self.product_id.json}", "r", encoding="UTF-8") as jf:
+        if os.path.exists(f"app/products/{self.product_id}.json"):
+            with open(f"app/products/{self.product_id}.json", "r", encoding="UTF-8") as jf:
                 product = json.load(jf)
 
             self.product_id = product["product_id"]
@@ -149,9 +148,8 @@ class Product():
             self.cons_count = product["cons_count"]
             self.average_score = product["average_score"]
 
-            with open("app/opinions/{self.product_id.json}", "r", encoding="UTF-8") as jf:
-                opinions = json.loads(jf)
+            with open(f"app/opinions/{self.product_id}.json", "r", encoding="UTF-8") as jf:
+                opinions = json.load(jf)
                 
             for opinion in opinions:
                 self.opinions.append(Opinion(**opinion))
-
